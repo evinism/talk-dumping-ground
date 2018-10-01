@@ -1,0 +1,15 @@
+body {
+  background-color: lightblue;
+}
+
+#wrapper {
+  width: 500px;
+  margin: auto;
+  padding: 50px;
+  background-color: white;
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+}
