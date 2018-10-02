@@ -8,7 +8,7 @@ const setArmStatus = next => {
   if (isArmed) {
     $('#launch').click(() => {
       setArmStatus(false);
-      fetch('https://www.quick-pad.org');
+      fetch('https://evinism.github.io/');
     });
   }
 }
