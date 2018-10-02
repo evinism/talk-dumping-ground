@@ -8,7 +8,7 @@ const setArmStatus = next => {
   if (isArmed) {
     $('#launch').click(() => {
       setArmStatus(false);
-      fetch('https://evinism.github.io/');
+      fetch('https://export.arxiv.org/api/query?search_query=bees');
     });
   }
 }
