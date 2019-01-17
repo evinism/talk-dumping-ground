@@ -14,10 +14,9 @@ h1 {
   text-align: center;
 }
 
-input {
+#searchbar {
   width: 100%;
   font-size: 20px;
-
 }
 
 .entry {
@@ -34,4 +33,10 @@ input {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+#search-topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }

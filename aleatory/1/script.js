@@ -51,7 +51,7 @@ const search = term => fetch(`https://export.arxiv.org/api/query?search_query=${
   .then(arxivXmlToJson)
   .then(render)
 
-const throttledSearch = throttle(search, 250);
+const throttledSearch = throttle(search, 300);
 
 $('#searchbar').on('change input', event => {
   if (event.target.value.length > 1){
@@ -63,4 +63,9 @@ $('#searchbar').on('change input', event => {
   } else {
     $('#render-target').html('');
   }
+});
+
+
+$('#searchbar').on('change', event => {
+  isThrottled = event.target.value;
 });
