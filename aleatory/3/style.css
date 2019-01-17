@@ -1,0 +1,14 @@
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  text-align: center;
+}
+
+.page {
+  margin: 15px auto;
+  height: 550px;
+  width: 400px;
+  background-color: gray;
+}
