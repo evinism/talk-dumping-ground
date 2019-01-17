@@ -11,4 +11,6 @@ h1 {
   height: 550px;
   width: 400px;
   background-color: gray;
+  overflow: hidden;
+  padding: 15px;
 }

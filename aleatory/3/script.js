@@ -41,20 +41,39 @@ potentialItems = [
   'duck',
 ];
 
-function grabSomething(){
-  return potentialItems[
-    Math.floor(Math.random() * potentialItems.length)
+function grabSomething(arr){
+  return arr[
+    Math.floor(Math.random() * arr.length)
   ]
 }
 
+const arxivXmlToJson = text => {
+  const getAttr = (attr, elem) => elem.getElementsByTagName(attr)[0].textContent
+  const entryList = [...$.parseXML(text).documentElement.getElementsByTagName('entry')];
+  return entryList.map(entry => {
+    return {
+      link: getAttr('id', entry),
+      title: getAttr('title', entry),
+      summary: getAttr('summary', entry),
+    };
+  });
+}
+
 function triggerLoads(){
-  const elems = $('.page').toArray().filter(isScrolledIntoView);
+  const elems = $('.page').toArray().filter(isScrolledIntoView).filter(elem => !elem.evinLoaded);
   elems.forEach(elem => {
-    $.get('https://export.arxiv.org/api/query?search_query=' + grabSomething(), () => {
-      $(elem).html(`
-        {}
-      `)
-    });
+    fetch(`https://export.arxiv.org/api/query?search_query=${grabSomething(potentialItems)}`)
+      .then(res => res.text())
+      .then(arxivXmlToJson)
+      .then((response) => {
+        const pageData = (grabSomething(response || []));
+        $(elem).html(`
+          <h3>${pageData.title}</h3>
+          <p>${pageData.summary}</p>
+        `);
+        elem.evinLoaded = true; // haha 
+        elem.style.backgroundColor = 'white';
+      })
   });
 }
 
@@ -73,7 +92,7 @@ function debounce(func, wait, immediate) {
 	};
 };
 
-const debouncedLoad = debounce(triggerLoads, 500);
+const debouncedLoad = debounce(triggerLoads, 200);
 
 $(window).on('scroll', debouncedLoad);
 
