@@ -69,3 +69,7 @@ $('#searchbar').on('change input', event => {
 $('#searchbar').on('change', event => {
   isThrottled = event.target.value;
 });
+
+$('#debounce-toggle').on('click', event => {
+  isThrottled = event.target.checked;
+});
